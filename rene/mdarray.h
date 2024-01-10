@@ -4,12 +4,12 @@
  */
 #pragma once
 
-//#include <mdspan>
 #include <cstddef>
+#include "experimental/mdarray"
 
 namespace rene {
 
-template<typename T, std::size_t NDIM>
+/*template<typename T, std::size_t NDIM>
 class mdarray
 {
 public:
@@ -23,7 +23,7 @@ public:
 
     mdarray(const mdarry&) = default;
 
-};
+};*/
 
 //using vector=
 //using matrix

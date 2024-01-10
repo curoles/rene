@@ -20,6 +20,8 @@ include_directories(./)
 # Install inside the build directory.
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
 
+include(kokkos_mdspan.cmake)
+
 enable_testing()
 
 add_subdirectory(test)

@@ -3,6 +3,7 @@
 
 #include "rene/scale.h"
 #include "rene/simd_types.h"
+#include "rene/mdarray.h"
 
 using namespace rene;
 

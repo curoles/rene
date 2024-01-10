@@ -2,6 +2,7 @@
 
 #include "rene/array_view.h"
 #include "rene/gnu_attributes.h"
+#include "rene/mdspan.h"
 
 namespace rene {
 
