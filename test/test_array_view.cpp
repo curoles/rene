@@ -5,9 +5,11 @@
 //#include <cstdio>
 
 #include "rene/array_view.h"
+#include "rene/simd_types.h"
 //#include "rene/mdarray.h"
 
 using rene::array_view;
+using namespace rene;
 
 template<typename T, std::size_t N>
 static void fn_with_array_view_arg(std::span<T,N> a)
@@ -20,7 +22,7 @@ static void fn_with_int_array_view_arg(std::span<int> a)
 
 static void test_c_array()
 {
-    int a[]{1, 2, 3, 4};
+    alignas(simd::i32x8) int a[]{1, 2, 3, 4};
 
     array_view av(a);
     fn_with_array_view_arg(av);
@@ -32,7 +34,7 @@ static void test_c_array()
 
 static void test_stl_array()
 {
-    std::array a{1, 2, 3, 4};
+    alignas(simd::i32x8) std::array a{1, 2, 3, 4};
 
     array_view av(a);
     fn_with_array_view_arg(av);
