@@ -35,7 +35,7 @@ void scale(std::experimental::mdspan<T,Extents> a, T factor)
 {
     T* data = a.data_handle();
     assert(simd::is_aligned(data, product_of_extents(a.extents())));
-    //FIXME data = assume_aligned<simd::align<T>(product_of_extents(a.extents()))>(data);
+    data = assume_aligned<simd::align<T>(product_of_extents(Extents{}))>(data);
 
     scale(a.size(), data, factor);
 }
