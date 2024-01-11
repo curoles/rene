@@ -4,11 +4,10 @@
 #include <cstdlib>
 //#include <cstdio>
 
-#include "rene/array_view.h"
 #include "rene/simd_types.h"
 #include "rene/simd_align.h"
+#include "rene/aligned_allocator.h"
 
-using rene::array_view;
 using namespace rene;
 
 template<typename T, std::size_t N>
@@ -24,7 +23,7 @@ static void test_c_array()
 {
     alignas(simd::align<int>(8)) int a[]{1, 2, 3, 4};
 
-    array_view av(a);
+    std::span av(a);
     fn_with_array_view_arg(av);
 
     fn_with_array_view_arg(std::span(a));
@@ -36,7 +35,7 @@ static void test_stl_array()
 {
     alignas(simd::align<int>(8)) std::array a{1, 2, 3, 4};
 
-    array_view av(a);
+    std::span av(a);
     fn_with_array_view_arg(av);
 
     fn_with_array_view_arg(std::span(a));
@@ -46,10 +45,9 @@ static void test_stl_array()
 
 static void test_stl_vector()
 {
-    //FIXME TODO aligned allocation
-    std::vector a{1, 2, 3, 4};
+    rene::vector<int> a{1, 2, 3, 4};
 
-    array_view av(a);
+    std::span av(a);
     fn_with_array_view_arg(av);
     assert(av.front() == av[0] && av[0] == 1);
 
