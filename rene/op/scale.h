@@ -16,7 +16,7 @@ namespace rene {
 
 template<typename T>
     requires std::is_arithmetic_v<T>
-RENE_ATTR_WO(2,1)
+RENE_ATTR_RW(2,1)
 void scale(std::size_t size, T a[], T factor)
 {
     for (size_t i = 0; i < size; ++i) {

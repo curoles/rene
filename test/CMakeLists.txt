@@ -10,8 +10,9 @@ include(CTest)
 set(TESTS
     test_array_view
     test_mdspan
-    test_scale
     test_fill
+    test_scale
+    test_add
 )
 
 #set(matrix_cc_flags -fopenmp)
