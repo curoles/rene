@@ -1,8 +1,22 @@
+/**@file
+ * @brief
+ * @author Igor Lesik 2024
+ * @copyright 2024 Igor Lesik
+ *
+ */
 #pragma once
 
 #include <bit>
 #include <cstddef>
 #include <cstdint>
+
+#define SPAN_HINT_ALIGN(data, N) \
+    assert(simd::is_aligned(data, N)); \
+    data = assume_aligned<simd::align<T>(N)>(data);
+
+#define MDSPAN_HINT_ALIGN(data, Extents) \
+    assert(simd::is_aligned(data, product_of_extents(Extents{}))); \
+    data = assume_aligned<simd::align<T>(product_of_extents(Extents{}))>(data);
 
 namespace rene {
 

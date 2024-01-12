@@ -1,6 +1,8 @@
 /**@file
  * @brief  Define short name for numeric types..
  * @author Igor Lesik 2022-2024
+ * @copyright Igor Lesik 2024
+ *
  */
 #pragma once
 

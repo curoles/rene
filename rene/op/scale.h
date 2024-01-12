@@ -1,3 +1,9 @@
+/**@file
+ * @brief
+ * @author Igor Lesik 2024
+ * @copyright 2024 Igor Lesik
+ *
+ */
 #pragma once
 
 #include <span>

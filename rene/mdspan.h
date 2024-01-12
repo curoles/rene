@@ -1,4 +1,8 @@
-/*
+/**@file
+ * @brief
+ * @author Igor Lesik 2024
+ * @copyright 2024 Igor Lesik
+ *
  * https://github.com/kokkos/mdspan
  * https://stackoverflow.com/questions/75778573/what-is-an-mdspan-and-what-is-it-used-for
  */

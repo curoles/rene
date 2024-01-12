@@ -11,6 +11,7 @@ set(TESTS
     test_array_view
     test_mdspan
     test_scale
+    test_fill
 )
 
 #set(matrix_cc_flags -fopenmp)
