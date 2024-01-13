@@ -8,7 +8,8 @@ include(CTest)
 # see https://subscription.packtpub.com/book/programming/9781801070058/12/ch12lvl1sec76/dynamic-analysis-with-valgrind
 
 set(TESTS
-    test_array_view
+    test_span
+    test_sparse_span
     test_mdspan
     test_fill
     test_scale
