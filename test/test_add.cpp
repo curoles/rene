@@ -62,7 +62,9 @@ static void test_add_sparse_array()
     alignas(simd::align<int>(8)) const std::array c{1, 2, 3, 104, 5, 206, 7, 8};
 
     rene::add(std::span(a), rene::sparse_span<int,int,2,8>(b, bp, 8));
-for (auto ai: a) {printf("%d\n", ai);}
+
+    //for (auto ai: a) {printf("%d\n", ai);}
+
     assert(std::equal(std::begin(a), std::end(a), std::begin(c), std::end(c)));
 }
 

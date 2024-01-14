@@ -11,6 +11,7 @@
 #include "rene/mdspan.h"
 #include "rene/gnu_attributes.h"
 #include "rene/simd_align.h"
+#include "rene/identity_number.h"
 
 namespace rene::blas {
 
@@ -22,8 +23,15 @@ template<typename T>
 RENE_ATTR_RW(2,1) RENE_ATTR_RO(3,1)
 void axpy(std::size_t size, T x[], const T y[], T a)
 {
-    for (size_t i = 0; i < size; ++i) {
-        x[i] = a*x[i] + y[i];
+    if (a == identity_number<T>()) {
+        for (size_t i = 0; i < size; ++i) {
+            x[i] = x[i] + y[i];
+        }
+    }
+    else {
+        for (size_t i = 0; i < size; ++i) {
+            x[i] = a*x[i] + y[i];
+        }
     }
 }
 

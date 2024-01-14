@@ -14,6 +14,7 @@ set(TESTS
     test_fill
     test_scale
     test_add
+    test_axpy
 )
 
 #set(matrix_cc_flags -fopenmp)
