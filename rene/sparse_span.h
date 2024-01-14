@@ -143,14 +143,22 @@ public:
     }
 #endif
 
+    // assume positions are sorted
+    // FIXME TODO bisection
     constexpr value_type
-    operator[](size_type __idx) const noexcept
+    operator[](size_type requested_pos) const noexcept
     {
-        /*__glibcxx_*/assert(__idx < size());
-        value_type val{};
+        /*__glibcxx_*/assert(requested_pos < size());
+        value_type val{}; // init with 0
         for (size_type i = 0; i < data_size(); ++i) {
-            if ((size_type)_M_pos_ptr[i] == __idx) {
+            size_type pos = static_cast<size_type>(_M_pos_ptr[i]);
+            if (pos == requested_pos) {
                 return _M_ptr[i];
+            }
+            // optimization, `pos` not found in the array of positions,
+            // assume sorted positions
+            if (requested_pos < pos) {
+                break;
             }
         }
         return val;
