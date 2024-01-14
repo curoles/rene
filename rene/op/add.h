@@ -9,6 +9,7 @@
 #include <span>
 
 #include "rene/mdspan.h"
+#include "rene/sparse_span.h"
 #include "rene/gnu_attributes.h"
 #include "rene/simd_align.h"
 
@@ -49,6 +50,21 @@ void add(std::experimental::mdspan<T,Extents> a, std::experimental::mdspan<const
     MDSPAN_HINT_ALIGN(b_data, Extents)
 
     add(a.size(), a_data, b_data);
+}
+
+template<typename T, typename PT, std::size_t N, std::size_t M>
+    requires std::is_arithmetic_v<T>
+void add(std::span<T,N> a, rene::sparse_span<T,PT,M,N> b)
+{
+    if constexpr (N == std::dynamic_extent) {
+        assert(a.size() <= b.size());
+    }
+    T* a_data = a.data();
+    SPAN_HINT_ALIGN(a_data, N)
+
+    for (std::size_t i = 0; i < a.size(); ++i) {
+        a_data[i] += b[i];
+    };
 }
 
 } // namespace rene

@@ -149,7 +149,7 @@ public:
         /*__glibcxx_*/assert(__idx < size());
         value_type val{};
         for (size_type i = 0; i < data_size(); ++i) {
-            if (_M_pos_ptr[i] == __idx) {
+            if ((size_type)_M_pos_ptr[i] == __idx) {
                 return _M_ptr[i];
             }
         }

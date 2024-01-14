@@ -54,11 +54,24 @@ static void test_add_2d_array()
     }
 }
 
+static void test_add_sparse_array()
+{
+    alignas(simd::align<int>(8))       std::array a{1, 2, 3, 4, 5, 6, 7, 8};
+    std::array b{100, 200};
+    std::array bp{3, 5};
+    alignas(simd::align<int>(8)) const std::array c{1, 2, 3, 104, 5, 206, 7, 8};
+
+    rene::add(std::span(a), rene::sparse_span<int,int,2,8>(b, bp, 8));
+for (auto ai: a) {printf("%d\n", ai);}
+    assert(std::equal(std::begin(a), std::end(a), std::begin(c), std::end(c)));
+}
+
 int main(void)
 {
     test_add_array();
     test_add_dynamic_array();
     test_add_2d_array();
+    test_add_sparse_array();
 
     return EXIT_SUCCESS;
 }
