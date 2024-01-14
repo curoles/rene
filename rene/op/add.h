@@ -28,6 +28,9 @@ template<typename T, std::size_t N>
     requires std::is_arithmetic_v<T>
 void add(std::span<T,N> a, std::span<const T,N> b)
 {
+    if constexpr (N == std::dynamic_extent) {
+        assert(a.size() <= b.size());
+    }
     T* a_data = a.data();
     SPAN_HINT_ALIGN(a_data, N)
     T const* b_data = b.data();
